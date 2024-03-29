@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Configs/PageRoute.dart';
 import 'package:tiktaktoe_multiplayer/Configs/Theme.dart';
+import 'package:tiktaktoe_multiplayer/Pages/Auth/AuthPage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/RoomPage/RoomPage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Splace/SplacePage.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Tik Tak Toe Multiplayer ',
       theme: lightTheme,
       // home: RoomPage(),
-      home: SplacePage(),
+      home: AuthPage(),
     );
   }
 }
