@@ -40,7 +40,9 @@ class AuthPage extends StatelessWidget {
             PrimaryButtonWithIcon(
               buttonText: "Sign in with Google",
               iconPath: IconsPath.google,
-              onTap: () {},
+              onTap: () {
+                print("Sign in with Google");
+              },
             ),
           ],
         ),
