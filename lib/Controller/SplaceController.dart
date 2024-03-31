@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Welcome/WelcomePage.dart';
 
-import '../Pages/RoomPage/RoomPage.dart';
-
 class SplaceController extends GetxController {
   @override
   void onInit() {

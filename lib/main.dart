@@ -5,6 +5,9 @@ import 'package:tiktaktoe_multiplayer/Configs/Theme.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Auth/AuthPage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/RoomPage/RoomPage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Splace/SplacePage.dart';
+import 'package:tiktaktoe_multiplayer/Pages/UpdateProfile/UpdateProfile.dart';
+
+import 'Pages/HomePage/HomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'Tik Tak Toe Multiplayer ',
       theme: lightTheme,
       // home: RoomPage(),
-      home: AuthPage(),
+      // home: SplacePage(),
+      // home: HomePage(),
+      home: UpdateProfile(),
     );
   }
 }
