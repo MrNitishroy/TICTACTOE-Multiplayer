@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tik Tak Toe Multiplayer ',
       theme: lightTheme,
-      home: SplacePage(),
+      home: UpdateProfile(),
     );
   }
 }

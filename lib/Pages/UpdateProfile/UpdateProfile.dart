@@ -1,17 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tiktaktoe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 import 'package:tiktaktoe_multiplayer/Controller/AuthController.dart';
+import 'package:tiktaktoe_multiplayer/Controller/ProfileController.dart';
 
 class UpdateProfile extends StatelessWidget {
   const UpdateProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
+    ProfileController profileController = Get.put(ProfileController());
+
+    RxString imagePath = "".obs;
+    TextEditingController nameController = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -25,19 +32,45 @@ class UpdateProfile extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                      ),
+                      Obx(() => imagePath == ""
+                          ? Container(
+                              width: 200,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: const Icon(
+                                Icons.add_a_photo_outlined,
+                                size: 50,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : Container(
+                              width: 200,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                // color: Colors.red,
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(40),
+                                child: Image.file(
+                                  File(
+                                    imagePath.value,
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )),
                       SizedBox(width: 20),
                       Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () async {
+                              imagePath.value = await profileController
+                                  .pickImage(ImageSource.gallery);
+                            },
                             child: Container(
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
@@ -52,7 +85,10 @@ class UpdateProfile extends StatelessWidget {
                           ),
                           SizedBox(height: 30),
                           InkWell(
-                            onTap: () {},
+                            onTap: () async {
+                              imagePath.value = await profileController
+                                  .pickImage(ImageSource.camera);
+                            },
                             child: Container(
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
@@ -71,6 +107,7 @@ class UpdateProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   TextFormField(
+                    controller: nameController,
                     decoration: InputDecoration(
                       hintText: "Enter your name",
                     ),
@@ -84,12 +121,17 @@ class UpdateProfile extends StatelessWidget {
                   ),
                 ],
               ),
-              PrimaryButtonWithIcon(
-                buttonText: "Save",
-                onTap: () {
-                  authController.updateProfile();
-                },
-                iconPath: IconsPath.save,
+              Obx(
+                () => profileController.isLoading.value
+                    ? CircularProgressIndicator()
+                    : PrimaryButtonWithIcon(
+                        buttonText: "Save",
+                        onTap: () {
+                          profileController.updateProfile(
+                              nameController.text, imagePath.value);
+                        },
+                        iconPath: IconsPath.save,
+                      ),
               )
             ],
           ),
