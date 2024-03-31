@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "401459504448",
+    "project_id": "tictactoe-multiplayer-flutter",
+    "storage_bucket": "tictactoe-multiplayer-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401459504448:android:14fbe29a99917764ab46a5",
+        "android_client_info": {
+          "package_name": "com.example.tiktaktoe_multiplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5bR9RXfc6B6rsFuruS9MiTEKgtGzrKvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

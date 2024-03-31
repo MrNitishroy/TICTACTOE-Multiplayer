@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tiktaktoe_multiplayer/Controller/AuthController.dart';
 
 class UpdateProfile extends StatelessWidget {
   const UpdateProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -82,7 +85,12 @@ class UpdateProfile extends StatelessWidget {
                 ],
               ),
               PrimaryButtonWithIcon(
-                  buttonText: "Save", onTap: () {}, iconPath: IconsPath.save)
+                buttonText: "Save",
+                onTap: () {
+                  authController.updateProfile();
+                },
+                iconPath: IconsPath.save,
+              )
             ],
           ),
         ),

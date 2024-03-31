@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tiktaktoe_multiplayer/Controller/AuthController.dart';
 import 'package:tiktaktoe_multiplayer/Pages/RoomPage/RoomPage.dart';
 
 import '../../Components/PrimaryButtonWithIcon.dart';
@@ -13,6 +14,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RxBool isLoading = false.obs;
+    AuthController authController = Get.put(AuthController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -44,7 +46,7 @@ class AuthPage extends StatelessWidget {
               buttonText: "Sign in with Google",
               iconPath: IconsPath.google,
               onTap: () {
-                Get.to(RoomPage());
+                authController.login();
               },
             ),
           ],

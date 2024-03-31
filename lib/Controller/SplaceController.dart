@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:tiktaktoe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Welcome/WelcomePage.dart';
 
 class SplaceController extends GetxController {
+  final auth = FirebaseAuth.instance;
   @override
   void onInit() {
     splaceHandle();
@@ -10,6 +13,10 @@ class SplaceController extends GetxController {
 
   Future<void> splaceHandle() async {
     await Future.delayed(const Duration(seconds: 3));
-    Get.offAll(WelcomePage());
+    if (auth.currentUser == null) {
+      Get.offAll(WelcomePage());
+    } else {
+      Get.offAll(HomePage());
+    }
   }
 }

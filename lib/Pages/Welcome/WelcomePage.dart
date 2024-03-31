@@ -2,6 +2,7 @@ import 'package:concentric_transition/page_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tiktaktoe_multiplayer/Pages/Auth/AuthPage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/RoomPage/RoomPage.dart';
 
 import '../../Configs/AssetsPath.dart';
@@ -102,7 +103,7 @@ class WelcomePage extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         onFinish: () {
           print("Completetd");
-          Get.offAll(RoomPage());
+          Get.offAll(AuthPage());
         },
         itemBuilder: (index) {
           return pages[index];
