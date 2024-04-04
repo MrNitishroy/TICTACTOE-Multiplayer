@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Components/PrimaryButtonWithIcon.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
@@ -52,7 +53,9 @@ class HomePage extends StatelessWidget {
               children: [
                 PrimaryButtonWithIcon(
                   buttonText: "Single Player",
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed("/singlePlayer");
+                  },
                   iconPath: IconsPath.user,
                 ),
                 SizedBox(height: 30),
