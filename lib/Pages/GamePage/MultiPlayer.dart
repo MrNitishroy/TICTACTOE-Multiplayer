@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tiktaktoe_multiplayer/Components/InGameUserCard.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
-class GamePage extends StatelessWidget {
-  const GamePage({super.key});
+class MultiPlayer extends StatelessWidget {
+  const MultiPlayer({super.key});
 
   @override
   Widget build(BuildContext context) {

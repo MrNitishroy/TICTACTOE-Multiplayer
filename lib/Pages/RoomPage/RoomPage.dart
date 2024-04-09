@@ -18,7 +18,12 @@ class RoomPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset(IconsPath.backIcon),
+                InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: SvgPicture.asset(IconsPath.backIcon),
+                ),
                 SizedBox(width: 15),
                 Text(
                   "Play With Private Room",
@@ -50,7 +55,9 @@ class RoomPage extends StatelessWidget {
             SizedBox(height: 20),
             PrimaryButton(
               buttonText: "Join Now",
-              onTap: () {},
+              onTap: () {
+                Get.toNamed("/lobby");
+              },
             ),
             SizedBox(height: 80),
             Text(
@@ -64,7 +71,7 @@ class RoomPage extends StatelessWidget {
             PrimaryButton(
               buttonText: "Create room",
               onTap: () {
-                Get.to(LobbyPage());
+                Get.toNamed("/lobby");
               },
             ),
           ],

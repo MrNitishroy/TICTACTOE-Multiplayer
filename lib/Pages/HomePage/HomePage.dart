@@ -61,7 +61,9 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 30),
                 PrimaryButtonWithIcon(
                   buttonText: "Multi Player",
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed("/room");
+                  },
                   iconPath: IconsPath.group,
                 ),
               ],

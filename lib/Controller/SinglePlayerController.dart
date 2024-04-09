@@ -67,56 +67,95 @@ class SinglePlayerController extends GetxController {
         playValue[2] != "") {
       print("winner is ${playValue[2]}");
       WinnerDialog(playValue[2]);
-    } else {}
+    } else {
+      if (!playValue.contains("")) {
+        WinnerDialog("noone");
+      }
+    }
   }
 
   Future<dynamic> WinnerDialog(String winner) {
     scoreCalculate(winner);
     return Get.defaultDialog(
         barrierDismissible: false,
-        title: "Winner is $winner",
+        title: winner == "noone" ? "Match Draw" : "Congratulations",
         backgroundColor: Colors.white,
         content: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              SvgPicture.asset(
-                IconsPath.wonIcon,
-                width: 100,
-              ),
-              SizedBox(height: 20),
-              Text(
-                "Congratulations",
-                style: TextStyle(
-                  fontSize: 18,
+          child: winner == "noone"
+              ? Column(
+                  children: [
+                    const Text(
+                      "Match Draw",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    const Text(
+                      "You both played well",
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            resetGame();
+                          },
+                          child: Text("Play Again"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.offAllNamed("/home");
+                          },
+                          child: Text("Exit"),
+                        )
+                      ],
+                    )
+                  ],
+                )
+              : Column(
+                  children: [
+                    SvgPicture.asset(
+                      IconsPath.wonIcon,
+                      width: 100,
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Congratulations",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      "$winner won the match",
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            resetGame();
+                          },
+                          child: Text("Play Again"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.offAllNamed("/home");
+                          },
+                          child: Text("Exit"),
+                        )
+                      ],
+                    )
+                  ],
                 ),
-              ),
-              Text(
-                "$winner won the match",
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      resetGame();
-                    },
-                    child: Text("Play Again"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.offAllNamed("/home");
-                    },
-                    child: Text("Exit"),
-                  )
-                ],
-              )
-            ],
-          ),
         ));
   }
 

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       builder: FToastBuilder(),
       getPages: pages,
       debugShowCheckedModeBanner: false,
-      title: 'Tik Tak Toe Multiplayer ',
+      title: 'Tik Tak Toe Multiplayer',
       theme: lightTheme,
       home: SplacePage(),
     );

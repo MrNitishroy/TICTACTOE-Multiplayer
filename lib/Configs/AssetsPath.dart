@@ -8,6 +8,7 @@ class IconsPath {
   static const wonIcon = "${basePath}won.svg";
   static const xIcon = "${basePath}x.svg";
   static const applogo = "${basePath}appLogo.svg";
+  static const mic = "${basePath}mic.svg";
   static const camera = "${basePath}camera.svg";
   static const gallery = "${basePath}gallery.svg";
   static const game = "${basePath}game.svg";

@@ -7,7 +7,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:tiktaktoe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tiktaktoe_multiplayer/Components/UserCard.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
-import 'package:tiktaktoe_multiplayer/Pages/GamePage/GamePage.dart';
+import 'package:tiktaktoe_multiplayer/Pages/GamePage/MultiPlayer.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/Widget/PricingArea.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/Widget/RoomInfo.dart';
 
@@ -27,7 +27,12 @@ class LobbyPage extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(IconsPath.backIcon),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.asset(IconsPath.backIcon),
+                    ),
                     const SizedBox(width: 15),
                     Text(
                       "Play With Private Room",
@@ -51,7 +56,7 @@ class LobbyPage extends StatelessWidget {
                 PrimaryButton(
                   buttonText: "Start Game",
                   onTap: () {
-                    Get.to(GamePage());
+                    Get.to(MultiPlayer());
                   },
                 ),
               ],

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Auth/AuthPage.dart';
-import 'package:tiktaktoe_multiplayer/Pages/GamePage/GamePage.dart';
+import 'package:tiktaktoe_multiplayer/Pages/GamePage/MultiPlayer.dart';
 import 'package:tiktaktoe_multiplayer/Pages/GamePage/SinglePlayer.dart';
 import 'package:tiktaktoe_multiplayer/Pages/HomePage/HomePage.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
@@ -31,8 +31,8 @@ var pages = [
     page: () => SplacePage(),
   ),
   GetPage(
-    name: "/gamePage",
-    page: () => GamePage(),
+    name: "/multiPlayer",
+    page: () => MultiPlayer(),
   ),
   GetPage(
     name: "/updateProfile",
