@@ -16,6 +16,15 @@ class ProfileController extends GetxController {
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
 
+  Rx<UserModel> user = UserModel().obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+ 
+
   Future<void> updateProfile(String name, String imagePath) async {
     isLoading.value = true;
     try {

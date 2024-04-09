@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:tiktaktoe_multiplayer/Controller/LobbyController.dart';
+import 'package:tiktaktoe_multiplayer/Controller/RoomController.dart';
 
 import '../../../Configs/AssetsPath.dart';
 
@@ -9,6 +12,7 @@ class RoomInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LobbyController lobbyController = Get.put(LobbyController());
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -52,15 +56,20 @@ class RoomInfo extends StatelessWidget {
                       ),
                     )),
                     SizedBox(width: 10),
-                    Container(
-                      padding: EdgeInsets.all(13),
-                      height: 70,
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).colorScheme.primary,
+                    InkWell(
+                      onTap: () {
+                        lobbyController.copyRoomCode(roomCode);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(13),
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: SvgPicture.asset(IconsPath.copyIcon),
                       ),
-                      child: SvgPicture.asset(IconsPath.copyIcon),
                     ),
                   ],
                 ),

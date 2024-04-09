@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Components/PrimaryButton.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tiktaktoe_multiplayer/Controller/RoomController.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/LobbyPage.dart';
 
 class RoomPage extends StatelessWidget {
@@ -10,6 +11,8 @@ class RoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RoomController roomController = Get.put(RoomController());
+    TextEditingController roomId = TextEditingController();
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -41,6 +44,7 @@ class RoomPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: roomId,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 fillColor: Theme.of(context).colorScheme.primaryContainer,
@@ -53,11 +57,17 @@ class RoomPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            PrimaryButton(
-              buttonText: "Join Now",
-              onTap: () {
-                Get.toNamed("/lobby");
-              },
+            Obx(
+              () => roomController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : PrimaryButton(
+                      buttonText: "Join Now",
+                      onTap: () {
+                        if (roomId.text.isNotEmpty) {
+                          roomController.joinRoom(roomId.text);
+                        }
+                      },
+                    ),
             ),
             SizedBox(height: 80),
             Text(
@@ -68,11 +78,15 @@ class RoomPage extends StatelessWidget {
                   ?.copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             Spacer(),
-            PrimaryButton(
-              buttonText: "Create room",
-              onTap: () {
-                Get.toNamed("/lobby");
-              },
+            Obx(
+              () => roomController.isLoading.value
+                  ? CircularProgressIndicator()
+                  : PrimaryButton(
+                      buttonText: "Create Room",
+                      onTap: () {
+                        roomController.createRoom();
+                      },
+                    ),
             ),
           ],
         ),

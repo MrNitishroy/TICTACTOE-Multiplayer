@@ -3,7 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
 class PriceArea extends StatelessWidget {
-  const PriceArea({super.key});
+  final String entryPrice;
+  final String winningPrice;
+  const PriceArea({
+    super.key,
+    required this.entryPrice,
+    required this.winningPrice,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +61,7 @@ class PriceArea extends StatelessWidget {
                 children: [
                   SvgPicture.asset(IconsPath.coinIcon),
                   SizedBox(width: 10),
-                  Text("23"),
+                  Text(entryPrice.toString()),
                 ],
               ),
             ),
@@ -108,7 +114,7 @@ class PriceArea extends StatelessWidget {
                 children: [
                   SvgPicture.asset(IconsPath.coinIcon),
                   SizedBox(width: 10),
-                  Text("46"),
+                  Text(winningPrice.toString()),
                 ],
               ),
             ),

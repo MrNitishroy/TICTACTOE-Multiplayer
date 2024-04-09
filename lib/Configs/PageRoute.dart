@@ -15,10 +15,6 @@ var pages = [
     page: () => RoomPage(),
   ),
   GetPage(
-    name: "/lobby",
-    page: () => LobbyPage(),
-  ),
-  GetPage(
     name: "/auth",
     page: () => AuthPage(),
   ),

@@ -3,7 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
 class UserCard extends StatelessWidget {
-  const UserCard({super.key});
+  final String imgaeUrl;
+  final String name;
+  final String coins;
+  const UserCard({super.key, required this.imgaeUrl, required this.name, required this.coins});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class UserCard extends StatelessWidget {
             children: [
               SizedBox(height: 60),
               Text(
-                "Nitish Kumar",
+                name,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(height: 10),
@@ -35,7 +38,7 @@ class UserCard extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    "23 Coins",
+                    "$coins Coins",
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
@@ -55,6 +58,13 @@ class UserCard extends StatelessWidget {
               border: Border.all(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 width: 3,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Image.network(
+                imgaeUrl,
+                fit: BoxFit.cover,
               ),
             ),
           ),
