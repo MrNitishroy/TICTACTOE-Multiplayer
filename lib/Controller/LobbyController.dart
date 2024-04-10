@@ -30,7 +30,15 @@ class LobbyController extends GetxController {
     }
   }
 
-  Future<void> updatePlayerStatus(String roomId, String status) async {
+  Future<void> updatePlayer1Status(String roomId, String status) async {
+    await db.collection("rooms").doc(roomId).update(
+      {
+        "player1Status": status,
+      },
+    );
+  }
+
+  Future<void> updatePlayer2Status(String roomId, String status) async {
     await db.collection("rooms").doc(roomId).update(
       {
         "player2Status": status,

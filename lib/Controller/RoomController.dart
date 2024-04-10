@@ -40,7 +40,7 @@ class RoomController extends GetxController {
       drawMatch: "",
       player1: player1,
       gameStatus: "lobby",
-      player1Status: "ready",
+      player1Status: "wating",
     );
     try {
       await db.collection("rooms").doc(id).set(
@@ -86,6 +86,4 @@ class RoomController extends GetxController {
     }
     isLoading.value = false;
   }
-
-  
 }

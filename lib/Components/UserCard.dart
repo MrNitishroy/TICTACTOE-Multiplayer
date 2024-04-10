@@ -6,7 +6,14 @@ class UserCard extends StatelessWidget {
   final String imgaeUrl;
   final String name;
   final String coins;
-  const UserCard({super.key, required this.imgaeUrl, required this.name, required this.coins});
+  final String status;
+  const UserCard({
+    super.key,
+    required this.imgaeUrl,
+    required this.name,
+    required this.coins,
+    this.status = "",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +49,34 @@ class UserCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
-              )
+              ),
+              status == ""
+                  ? SizedBox()
+                  : status == "ready"
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.done,
+                              color: Colors.green,
+                              size: 20,
+                            ),
+                            SizedBox(width: 10),
+                            Text(status),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.watch_later_outlined,
+                              color: Colors.orange,
+                              size: 20,
+                            ),
+                            SizedBox(width: 10),
+                            Text(status),
+                          ],
+                        ),
             ],
           ),
         ),

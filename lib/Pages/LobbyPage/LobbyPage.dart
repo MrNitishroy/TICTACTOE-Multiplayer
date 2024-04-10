@@ -10,6 +10,7 @@ import 'package:tiktaktoe_multiplayer/Components/UserCard.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 import 'package:tiktaktoe_multiplayer/Configs/Messages.dart';
 import 'package:tiktaktoe_multiplayer/Controller/LobbyController.dart';
+import 'package:tiktaktoe_multiplayer/Controller/RoomController.dart';
 import 'package:tiktaktoe_multiplayer/Pages/GamePage/MultiPlayer.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/Widget/PricingArea.dart';
 import 'package:tiktaktoe_multiplayer/Pages/LobbyPage/Widget/RoomInfo.dart';
@@ -26,6 +27,8 @@ class LobbyPage extends StatelessWidget {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     LobbyController lobbyController = Get.put(LobbyController());
+    RoomController roomController = Get.put(RoomController());
+    RxInt timer = 5.obs;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -60,7 +63,12 @@ class LobbyPage extends StatelessWidget {
                       );
                     }
                     if (snapshot.hasData) {
-                      
+                      if (snapshot.data!.player1Status == "ready" &&
+                          snapshot.data!.player2Status == "ready") {
+                        WidgetsBinding.instance!.addPostFrameCallback((_) {
+                          Get.to(MultiPlayer());
+                        });
+                      } else {}
                       return Column(
                         children: [
                           PriceArea(
@@ -75,6 +83,7 @@ class LobbyPage extends StatelessWidget {
                                 imgaeUrl: snapshot.data!.player1!.image!,
                                 name: snapshot.data!.player1!.name!,
                                 coins: "00",
+                                status: snapshot.data!.player1Status!,
                               ),
                               snapshot.data!.player2 == null
                                   ? Container(
@@ -85,34 +94,37 @@ class LobbyPage extends StatelessWidget {
                                       imgaeUrl: snapshot.data!.player2!.image!,
                                       name: snapshot.data!.player2!.name!,
                                       coins: "00",
+                                      status: snapshot.data!.player2Status!,
                                     ),
                             ],
                           ),
                           const SizedBox(height: 20),
-                          Obx(
-                            () => Text(
-                              lobbyController.watingTime.value.toString(),
-                            ),
-                          ),
-                          snapshot.data!.player1!.role == "admin"
+                          snapshot.data!.player1!.email ==
+                                  roomController.user.value.email
                               ? PrimaryButton(
                                   buttonText: "Start Game",
                                   onTap: () {
-
+                                    lobbyController.updatePlayer1Status(
+                                      roomId,
+                                      "ready",
+                                    );
                                   },
                                 )
                               : snapshot.data!.player2Status == "wating"
                                   ? PrimaryButton(
                                       buttonText: "Ready",
                                       onTap: () async {
-                                        lobbyController.updatePlayerStatus(
+                                        lobbyController.updatePlayer2Status(
                                             roomId, "ready");
                                       },
                                     )
                                   : snapshot.data!.player2Status == "ready"
                                       ? PrimaryButton(
                                           buttonText: "Wating for start",
-                                          onTap: () {},
+                                          onTap: () {
+                                            lobbyController.updatePlayer2Status(
+                                                roomId, "wating");
+                                          },
                                         )
                                       : PrimaryButton(
                                           buttonText: "Start",
