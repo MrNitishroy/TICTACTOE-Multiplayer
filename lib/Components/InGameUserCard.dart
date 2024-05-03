@@ -4,7 +4,13 @@ import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
 class InGameUserCard extends StatelessWidget {
   final String icon;
-  const InGameUserCard({super.key, required this.icon});
+  final String name;
+  final String imageUrl;
+  const InGameUserCard(
+      {super.key,
+      required this.icon,
+      required this.name,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class InGameUserCard extends StatelessWidget {
             children: [
               SizedBox(height: 60),
               Text(
-                "Nitish Kumar",
+                name,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(height: 10),
@@ -53,11 +59,14 @@ class InGameUserCard extends StatelessWidget {
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.circular(100),
               border: Border.all(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 width: 3,
+              ),
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.cover,
               ),
             ),
           ),

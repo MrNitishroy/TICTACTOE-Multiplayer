@@ -66,7 +66,9 @@ class LobbyPage extends StatelessWidget {
                       if (snapshot.data!.player1Status == "ready" &&
                           snapshot.data!.player2Status == "ready") {
                         WidgetsBinding.instance!.addPostFrameCallback((_) {
-                          Get.to(MultiPlayer());
+                          Get.to(MultiPlayer(
+                            roomId: roomId,
+                          ));
                         });
                       } else {}
                       return Column(
@@ -80,7 +82,8 @@ class LobbyPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               UserCard(
-                                imgaeUrl: snapshot.data!.player1!.image!,
+                                imgaeUrl: snapshot.data!.player1!.image ??
+                                    defaltImage,
                                 name: snapshot.data!.player1!.name!,
                                 coins: "00",
                                 status: snapshot.data!.player1Status!,

@@ -41,6 +41,8 @@ class RoomController extends GetxController {
       player1: player1,
       gameStatus: "lobby",
       player1Status: "wating",
+      gameValue: ["", "", "", "", "", "", "", "", ""],
+      isXturn: true,
     );
     try {
       await db.collection("rooms").doc(id).set(

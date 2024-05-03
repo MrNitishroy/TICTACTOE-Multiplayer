@@ -26,10 +26,10 @@ var pages = [
     name: "/splace",
     page: () => SplacePage(),
   ),
-  GetPage(
-    name: "/multiPlayer",
-    page: () => MultiPlayer(),
-  ),
+  // GetPage(
+  //   name: "/multiPlayer",
+  //   page: () => MultiPlayer(),
+  // ),
   GetPage(
     name: "/updateProfile",
     page: () => UpdateProfile(),

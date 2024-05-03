@@ -29,3 +29,6 @@ class ImagePath {
   static const welcome2 = "${basePath}welcome2.png";
   static const welcome3 = "${basePath}welcome3.png";
 }
+
+
+ const String defaltImage = "https://www.pngall.com/wp-content/uploads/5/Profile.png";

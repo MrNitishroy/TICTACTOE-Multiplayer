@@ -10,7 +10,8 @@ class RoomModel {
   String? gameStatus;
   String? player1Status;
   String? player2Status;
-
+  List<String>? gameValue;
+  bool? isXturn;
   RoomModel({
     this.id,
     this.entryFee,
@@ -21,6 +22,8 @@ class RoomModel {
     this.gameStatus,
     this.player1Status,
     this.player2Status,
+    this.gameValue,
+    this.isXturn,
   });
 
   RoomModel.fromJson(Map<String, dynamic> json) {
@@ -53,6 +56,14 @@ class RoomModel {
     if (json["player2Status"] is String) {
       player2Status = json["player2Status"];
     }
+    if (json["gameValue"] is List) {
+      gameValue = json["gameValue"] == null
+          ? null
+          : List<String>.from(json["gameValue"]);
+    }
+    if (json["isXturn"] is bool) {
+      isXturn = json["isXturn"];
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -70,6 +81,10 @@ class RoomModel {
     _data["gameStatus"] = gameStatus;
     _data["player1Status"] = player1Status;
     _data["player2Status"] = player2Status;
+    if (gameValue != null) {
+      _data["gameValue"] = gameValue;
+    }
+    _data["isXturn"] = isXturn;
     return _data;
   }
 }
