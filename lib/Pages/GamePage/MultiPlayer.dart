@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:tiktaktoe_multiplayer/Components/InGameUserCard.dart';
 import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
+import 'package:tiktaktoe_multiplayer/Controller/AuthController.dart';
 import 'package:tiktaktoe_multiplayer/Models/RoomModel.dart';
 
 import '../../Controller/MultiPlayerController.dart';
@@ -19,6 +20,7 @@ class MultiPlayer extends StatelessWidget {
     final h = MediaQuery.of(context).size.height;
     MultiPlayerController multiPlayerController =
         Get.put(MultiPlayerController());
+    AuthController authController = Get.put(AuthController());
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
@@ -119,7 +121,6 @@ class MultiPlayer extends StatelessWidget {
                           ),
                           child: GridView.builder(
                             itemCount: 9,
-                          
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
@@ -129,10 +130,13 @@ class MultiPlayer extends StatelessWidget {
                                 onTap: () {
                                   // print(index);
                                   // print(playValue);
+
                                   multiPlayerController.updateData(
                                     roomId,
                                     playValue,
                                     index,
+                                    roomData.isXturn!,
+                                    roomData,
                                   );
                                 },
                                 child: Container(
@@ -159,7 +163,7 @@ class MultiPlayer extends StatelessWidget {
                                             ? const BorderRadius.only(
                                                 topRight: Radius.circular(20),
                                               )
-                                           : index == 6
+                                            : index == 6
                                                 ? const BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(20),
@@ -197,7 +201,56 @@ class MultiPlayer extends StatelessWidget {
                             }),
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primary,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: roomData.isXturn == true
+                                ? Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        IconsPath.xIcon,
+                                        width: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Turn",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        IconsPath.oIcon,
+                                        width: 20,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Turn",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                          )
+                        ],
+                      ),
                     ],
                   );
                 } else {
