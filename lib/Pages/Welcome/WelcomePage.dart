@@ -84,7 +84,7 @@ class WelcomePage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Get.offAll(RoomPage());
+                Get.offAll(AuthPage());
               },
               child: Text(
                 'Get Started',

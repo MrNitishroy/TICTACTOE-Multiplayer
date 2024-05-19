@@ -119,6 +119,7 @@ class MultiPlayer extends StatelessWidget {
                           ),
                           child: GridView.builder(
                             itemCount: 9,
+                          
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
@@ -126,9 +127,11 @@ class MultiPlayer extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               return InkWell(
                                 onTap: () {
-                                  print(index);
+                                  // print(index);
+                                  // print(playValue);
                                   multiPlayerController.updateData(
                                     roomId,
+                                    playValue,
                                     index,
                                   );
                                 },
@@ -156,7 +159,7 @@ class MultiPlayer extends StatelessWidget {
                                             ? const BorderRadius.only(
                                                 topRight: Radius.circular(20),
                                               )
-                                            : index == 6
+                                           : index == 6
                                                 ? const BorderRadius.only(
                                                     bottomLeft:
                                                         Radius.circular(20),

@@ -7,6 +7,7 @@ import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 import 'package:tiktaktoe_multiplayer/Controller/AuthController.dart';
 import 'package:tiktaktoe_multiplayer/Controller/ProfileController.dart';
 import 'package:tiktaktoe_multiplayer/Pages/Auth/AuthPage.dart';
+import 'package:tiktaktoe_multiplayer/Pages/UpdateProfile/UpdateProfile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -77,7 +78,9 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(UpdateProfile());
+                  },
                   child: Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(

@@ -13,9 +13,16 @@ class MultiPlayerController extends GetxController {
         );
   }
 
-  Future<void> updateData(String roomId, gameValue) async {
-    await db.collection("rooms").doc(roomId).update({
-      "gamevalue": gameValue,
-    });
+  Future<void> updateData(
+      String roomId, List<String> gameValue, int index) async {
+    List<String> oldValue = gameValue;
+    if (oldValue[index] == '') {
+      oldValue[index] = "O";
+      print(oldValue);
+
+      await db.collection("rooms").doc(roomId).update({
+        "gameValue": oldValue,
+      });
+    }
   }
 }

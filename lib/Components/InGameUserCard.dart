@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tiktaktoe_multiplayer/Configs/AssetsPath.dart';
 
 class InGameUserCard extends StatelessWidget {
   final String icon;
